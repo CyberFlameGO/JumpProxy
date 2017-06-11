@@ -3,6 +3,7 @@ package me.rtn.jump.commands;
 import me.rtn.jump.util.ChatUtil;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
@@ -31,7 +32,7 @@ public class MessageCommand extends Command {
 
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        String messageFormat = "&9[✉]&f&l»";
+        TextComponent messageFormat = ChatUtil.format("&9[✉]&f&l»");
 
         if(commandSender instanceof ProxiedPlayer){
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
@@ -45,12 +46,12 @@ public class MessageCommand extends Command {
                 player.sendMessage(ChatUtil.format("&cPlayer offline"));
             }
 
-            if(checkIfArguementIsNull(args, 1)){
-
+            if(checkIfArgumentIsNull(args, 1)){
+                player.sendMessage(ChatUtil.format("&cInvalid arguments. Try /msg <player> <message>"));
             }
         }
     }
-    private boolean checkIfArguementIsNull(String[] args, int index){
+    private boolean checkIfArgumentIsNull(String[] args, int index){
         try {
             String temp = args[index];
             return false;
