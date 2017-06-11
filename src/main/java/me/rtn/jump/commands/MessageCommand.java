@@ -1,6 +1,8 @@
 package me.rtn.jump.commands;
 
+import me.rtn.jump.util.ChatUtil;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
 /*
@@ -23,11 +25,19 @@ import net.md_5.bungee.api.plugin.Command;
 public class MessageCommand extends Command {
 
     public MessageCommand(){
-        super("msg", "bungeecord.command.list", "w", "m", "r");
+        super("msg", "jumpproxy.command.msg", "w", "m", "r");
     }
 
     @Override
-    public void execute(CommandSender commandSender, String[] strings) {
+    public void execute(CommandSender commandSender, String[] args) {
+        if(commandSender instanceof ProxiedPlayer){
+            ProxiedPlayer player = (ProxiedPlayer) commandSender;
+            player.sendMessage(ChatUtil.format("&9[MSG] >> " + "hello"));
 
+            if(args.length == 0){
+                player.sendMessage(ChatUtil.format("&c Invalid message"));
+                return;
+            }
+        }
     }
 }
