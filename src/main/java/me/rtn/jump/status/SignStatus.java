@@ -1,5 +1,8 @@
 package me.rtn.jump.status;
 
+import org.bukkit.Location;
+import org.bukkit.block.Sign;
+
 /*
  * Jump
  * Copyright (C) 2017 RapidTheNerd
@@ -18,4 +21,17 @@ package me.rtn.jump.status;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class SignStatus {
+
+    private Location location; //may not need this
+    private Sign sing;
+    private String name;
+    private String serverIP; //could be a domain name instead of numeric
+    private int port;
+
+    public SignStatus(Location location, String name, String serverIP, int port) {
+        this.location = location;;
+        this.name = name;
+        this.serverIP = serverIP;
+        this.port = port;
+    }
 }
