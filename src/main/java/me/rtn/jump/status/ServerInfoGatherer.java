@@ -32,6 +32,21 @@ public class ServerInfoGatherer {
 
             DataOutputStream output = new DataOutputStream(socket.getOutputStream());
             DataInputStream input = new DataInputStream(socket.getInputStream());
+
+            output.write(0xFE);
+
+            StringBuilder builder = new StringBuilder();
+            int b;
+            while ((b = input.read()) != -1) {
+                if(b != 0 && b > 16 && b != 255 && b != 23 && b != 24){
+                    builder.append((char) b);
+                }
+            }
+            String[] data = builder.toString().split("&c");
+            String motd = data[0];
+            int onlinePlayers = Integer.valueOf(data[1]);
+            int maxPlayers = Integer.valueOf(data[2]);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
