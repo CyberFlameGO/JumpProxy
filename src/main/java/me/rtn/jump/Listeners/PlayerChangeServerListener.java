@@ -1,5 +1,11 @@
 package me.rtn.jump.Listeners;
 
+import me.rtn.jump.util.ChatUtil;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.ServerSwitchEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.event.EventHandler;
+
 /*
  * Jump
  * Copyright (C) 2017 RapidTheNerd
@@ -17,5 +23,12 @@ package me.rtn.jump.Listeners;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class PlayerChangeServerListener {
+public class PlayerChangeServerListener implements Listener {
+
+    @EventHandler
+    public void onServerChange(ServerSwitchEvent event){
+        ProxiedPlayer player = event.getPlayer();
+
+        player.sendMessage(ChatUtil.format("&bSwitched to server" + player.getServer().getInfo().getName()));
+    }
 }

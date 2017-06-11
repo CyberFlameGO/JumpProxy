@@ -1,6 +1,8 @@
 package me.rtn.jump.proxy;
 
+import me.rtn.jump.Listeners.PlayerChangeServerListener;
 import me.rtn.jump.commands.MessageCommand;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 
 /*
@@ -20,7 +22,7 @@ import net.md_5.bungee.api.plugin.Plugin;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class Proxy extends Plugin {
+public class Proxy extends Plugin implements Listener {
 
     private static Proxy proxyInstance;
 
@@ -29,6 +31,7 @@ public class Proxy extends Plugin {
         proxyInstance = this;
 
         getProxy().getPluginManager().registerCommand(this, new MessageCommand());
+        getProxy().getPluginManager().registerListener(this , new PlayerChangeServerListener());
     }
 
     @Override
