@@ -44,11 +44,24 @@ public class MessageCommand extends Command {
             String targetString = args[0];
             if(ProxyServer.getInstance().getPlayer(targetString) == null){
                 player.sendMessage(ChatUtil.format("&cPlayer offline"));
+                return;
             }
+
+            ProxiedPlayer tagret = ProxyServer.getInstance().getPlayer(targetString);
 
             if(checkIfArgumentIsNull(args, 1)){
                 player.sendMessage(ChatUtil.format("&cInvalid arguments. Try /msg <player> <message>"));
+                return;
             }
+            String message = "";
+            for(int x = 1; x < args.length; x++){
+                if(message.equals("")){
+                    message = args[x];
+                } else {
+                    message = message + " " + args[x];
+                }
+            }
+            tagret.sendMessage(messageFormat + " " +  message);
         }
     }
     private boolean checkIfArgumentIsNull(String[] args, int index){
