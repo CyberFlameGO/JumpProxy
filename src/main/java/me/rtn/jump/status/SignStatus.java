@@ -23,7 +23,7 @@ import org.bukkit.block.Sign;
 public class SignStatus {
 
     private Location location; //may not need this
-    private Sign sing;
+    private Sign sign;
     private String name;
     private String serverIP; //could be a domain name instead of numeric
     private int port;
@@ -33,5 +33,30 @@ public class SignStatus {
         this.name = name;
         this.serverIP = serverIP;
         this.port = port;
+        this.sign = (Sign) location.getBlock().getState();
+    }
+
+    public void update(){
+        
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public Sign getSign() {
+        return sign;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getServerIP() {
+        return serverIP;
+    }
+
+    public int getPort() {
+        return port;
     }
 }

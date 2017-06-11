@@ -25,7 +25,7 @@ import java.net.Socket;
  */
 public class ServerInfoGatherer {
 
-    public static void main(String[] args){
+    public static void getServerInfo(){
         try {
             Socket socket = new Socket();
             socket.connect(new InetSocketAddress("localhost", 8080), 1 * 1000);
