@@ -1,5 +1,6 @@
 package me.rtn.jump.status;
 
+import me.rtn.jump.util.ChatUtil;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
 
@@ -67,14 +68,23 @@ public class SignStatus {
                 -------------
                 |Server Name|
                 |Server IP  |
+                |OnlinePlays|
                 |Server MOTD|
                 -------------
                       |
                       |
              */
-            
+            sign.setLine(0, name);
+            sign.setLine(1, serverIP);
+            sign.setLine(2, onlinePlayers + "/" + maxPlayers );
+            sign.setLine(4, motd);
         } catch (IOException e) {
             e.printStackTrace();
+
+            sign.setLine(0, name);
+            sign.setLine(1, serverIP);
+            sign.setLine(2, String.valueOf(ChatUtil.format("8cServer error")));
+            sign.setLine(3, String.valueOf(ChatUtil.format("8cServer error")));
         }
     }
 
